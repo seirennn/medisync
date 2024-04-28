@@ -13,7 +13,8 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
   String? qrCodeResult;
   late AnimationController _animationController;
   late Animation<double> _scanAnimation;
-  final TorchController _torchController = TorchController(); // Initialize TorchController
+  final TorchController _torchController =
+      TorchController(); // Initialize TorchController
 
   @override
   void initState() {
@@ -36,7 +37,6 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
   @override
   void dispose() {
     _animationController.dispose();
-    _torchController.dispose(); // Dispose of the torch controller
     super.dispose();
   }
 
@@ -70,7 +70,8 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
                             onDetect: (capture) {
                               final List<Barcode> barcodes = capture.barcodes;
                               for (final barcode in barcodes) {
-                                debugPrint('Barcode found: ${barcode.rawValue}');
+                                debugPrint(
+                                    'Barcode found: ${barcode.rawValue}');
                                 setState(() {
                                   qrCodeResult = barcode.rawValue;
                                 });
@@ -85,7 +86,8 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
                                 top: _scanAnimation.value,
                                 left: 0,
                                 right: 0,
-                                child: SvgPicture.asset('assets/icons/scan.svg'),
+                                child:
+                                    SvgPicture.asset('assets/icons/scan.svg'),
                               );
                             },
                           ),
@@ -118,7 +120,8 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
                   margin: EdgeInsets.only(right: 40),
                   child: IconButton(
                     onPressed: () {
-                      _torchController.toggle(); // Use the initialized controller to toggle the flashlight
+                      _torchController
+                          .toggle(); // Use the initialized controller to toggle the flashlight
                     },
                     icon: Image.asset(
                       'assets/icons/flashlight.png',
@@ -136,7 +139,6 @@ class _QRHomeState extends State<QRHome> with SingleTickerProviderStateMixin {
     );
   }
 }
-
 
 class QRCodeClipper extends CustomClipper<Path> {
   @override
